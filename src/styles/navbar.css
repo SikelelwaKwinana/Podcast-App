@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.navBar {
+  background: rgba(9, 9, 9, 0.78);
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  padding: 0.5rem 2rem;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  }
+.nav--image {
+    
+    width: 30px;  
+    height: 100%;
+    margin-right: 6px;
+}
+  
+  
+.nav--title {
+    color: white;
+    margin: 0;
+    justify-content: space-between;
+    align-self: center;
+    margin-right: 100px;
+    font-size: xx-large;
+  }
+
+.nav--search{
+    margin-right: 30%;
+    align-self:center;
+}
+  
+ .search--input {
+  padding: 10px;
+  font-size: 16px;
+  width: 400px;
+  border: 1px solid #ddd;
+  }
+
+ 
+ 
