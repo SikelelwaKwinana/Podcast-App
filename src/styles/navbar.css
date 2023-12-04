@@ -16,14 +16,43 @@ body {
   top: 0;
   z-index: 1;
   }
+
+  .nav--container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  } 
+  .nav--brand {
+    display: flex;
+    align-items: center;
+  } 
+
 .nav--image {
-    
-    width: 30px;  
-    height: 100%;
-    margin-right: 6px;
+  
+  width: 40px;
+  height: 40px;
+  margin-right: 4px;
 }
-  
-  
+
+.nav--options {
+  display: flex;
+}
+
+.nav--option {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 20px;
+  outline: none;
+}
+
+.nav--option:hover {
+  text-decoration: underline;
+}
+   
 .nav--title {
     color: white;
     margin: 0;
@@ -34,15 +63,17 @@ body {
   }
 
 .nav--search{
-    margin-right: 30%;
-    align-self:center;
+    margin-left: auto;
+    
+   
 }
   
  .search--input {
   padding: 10px;
   font-size: 16px;
-  width: 400px;
+  width: 200px;
   border: 1px solid #ddd;
+  border-radius: 6ch;
   }
 
  

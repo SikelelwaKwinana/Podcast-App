@@ -1,58 +1,59 @@
+// components/PodcastList.js
 import React, { useState, useEffect } from 'react';
-import Preview from './Preview'; // Adjust the import to the correct component
-import '../styles/podcast.css'; // Add your styles import if needed
+import { Link } from 'react-router-dom';
+import LoadingPage from './LoadingPage';
+import '../styles/podcast.css'
 
-const PodcastList = ({ onSelectShow }) => {
-  const [podcasts, setPodcasts] = useState([]);
+const PodcastList = () => {
   const [loading, setLoading] = useState(true);
-  const [selectedShowId, setSelectedShowId] = useState(null);
+  const [podcasts, setPodcasts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch('https://podcast-api.netlify.app/shows');
-
         if (!response.ok) {
-          throw new Error('Something went wrong. Try again later.');
+          throw new Error(`Failed to fetch data. Status: ${response.status}`);
         }
 
         const data = await response.json();
         setPodcasts(data);
-        setLoading(false);
       } catch (error) {
+        console.error('Error fetching data:', error.message);
+      } finally {
         setLoading(false);
-        console.error(error);
       }
     };
 
-    fetchData(); // Initial fetch on mount
-  }, []); // Dependencies array is empty to run once on mount
+    fetchData();
+  }, []);
 
-  const handleSelectShow = (showId) => {
-    setSelectedShowId(showId);
-    onSelectShow(showId); // Optionally, trigger the onSelectShow prop
+
+  const formatDate = (dateString) => {
+    const date = { day: 'numeric', month: 'long', year: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, date);
   };
 
   return (
-    <div className="podcast-list-container">
+    <div>
       {loading ? (
-        <div className="loading-message">Loading Podcasts...</div>
+        <LoadingPage />
       ) : (
-        <div>
-          <ul className="show-list">
-            {podcasts.map((show) => (
-              <li key={show.id} className="show-container">
-                <div className="show-info">
-                  <img src={show.image} alt={`Cover for ${show.title}`} />
-                  <h3>{show.title}</h3>
-                  <h3>{`Seasons: ${show.seasons}`}</h3>
-                  <button onClick={() => handleSelectShow(show.id)}>View Details</button>
+        <ul>
+          {podcasts.map((podcast) => (
+            <li key={podcast.id} className="container">
+              <Link to={`/shows/${podcast.id}`}>
+                <img src={podcast.image} alt={podcast.title} />
+                <div>
+                  <h3>{podcast.title}</h3>
+                  <p>{`Seasons: ${podcast.seasons}`}</p>
+                  <p>{`Last updated: ${formatDate(podcast.updated)}`}</p>
+                  <p>{`Genre: ${podcast.genre}`}</p>
                 </div>
-              </li>
-            ))}
-          </ul>
-          {selectedShowId && <Preview showId={selectedShowId} />} {/* Update this line */}
-        </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );
