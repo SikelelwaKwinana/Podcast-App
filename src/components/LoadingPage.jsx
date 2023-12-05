@@ -1,8 +1,7 @@
-// components/LoadingSpinner.js
-import React from 'react';
+import React from "react";
 
 const LoadingPage = () => {
-  return <div className="loading-page" >Loading Page...</div>;
+  return <div className="loading-page">Page is loading please wait...</div>;
 };
 
 export default LoadingPage;
