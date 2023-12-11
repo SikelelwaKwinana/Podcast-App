@@ -1,11 +1,10 @@
-
 .navBar {
   display: flex;
   align-self: flex-start;
-  justify-self: start; 
-  background: rgba(9, 9, 9, 0.78);
+  justify-self: start;
+  background: rgba(4, 3, 3, 0.78);
   width: 100%;
-  height: 60px;
+  height: 65px;
   color: white;
   padding: 0;
   margin: 0;
@@ -27,12 +26,14 @@
 .nav--brand {
   display: flex;
   align-items: center;
+  white-space: wrap;
 }
 
 .nav--image {
-  width: 40px;
-  height: 40px;
-  margin-right: 4px;
+  width: 30px;
+  height: 30px;
+  margin-top: 7px;
+  margin-left: 1px;
 }
 
 .nav--options {
@@ -51,16 +52,25 @@
 
 .nav--title {
   color: white;
-  margin: 0;
+  margin: 1px;
   justify-content: space-between;
   align-self: center;
   margin-right: 100px;
-  font-size: x-large;
+  font-size: large;
+}
+
+.home-button {
+
+  text-decoration: none;
+}
+
+.home-button:hover {
+  text-decoration: underline;
+  text-shadow: #ddd;
 }
 
 .nav--search {
   margin-left: 250px;
-
 }
 
 .search--input {
@@ -69,9 +79,109 @@
   width: 300px;
   border: 1px solid #ddd;
   border-radius: 6ch;
+  margin: 3px;
 }
+
 .nav--actions {
   display: flex;
   align-self: center;
   margin-left: 70px;
+}
+
+.sort-options label {
+  margin: 5px;
+  font-size: 12px;
+  white-space: wrap; 
+}
+
+.sort-options select {
+  width: 70px; 
+  padding: 3px; 
+  margin: 3px;
+  font-size: 10px; 
+}
+
+
+.genre-filter-container label {
+  margin: 4px;
+  font-size: 12px;
+  white-space: wrap;
+}
+
+.genre-filter-container select {
+  padding: 3px;
+  font-size: 10px;
+  margin: 3px;
+  width: 90px;
+   
+}
+
+/* Responsive Styles */
+
+/* md */
+@media (max-width: 768px) {
+  .nav--container {
+    padding: 0 10px;
+  }
+
+  .nav--title {
+    display: none;
+  }
+
+  .nav--search {
+    margin-left: 10px;
+  }
+
+  .search--input {
+    width: 200px;
+  }
+
+  .nav--actions {
+    margin-left: 20px;
+  }
+}
+
+/* sm */
+@media (max-width: 640px) {
+  .nav--container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav--brand {
+    margin-bottom: 10px;
+  }
+
+  .nav--image {
+    display: none; 
+  }
+
+  .nav--title {
+    display: none;
+  }
+
+  .nav--search {
+    margin-left: 10px;
+  }
+
+  .search--input {
+    width: 50%;
+  }
+
+  .nav--actions {
+    margin-left: 10px;
+  }
+}
+
+.bottom-navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(4, 3, 3, 0.78);;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 8000;
 }

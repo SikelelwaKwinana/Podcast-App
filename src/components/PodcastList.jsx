@@ -1,8 +1,6 @@
-
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LoadingPage from "./LoadingPage";
-import SortButton from "./SortButton";
 import "../styles/podcast.css";
 
 const PodcastList = ({ selectedGenre, selectedSort, searchQuery }) => {
@@ -79,7 +77,6 @@ const PodcastList = ({ selectedGenre, selectedSort, searchQuery }) => {
       const lowerCaseTitle = podcast.title.toLowerCase();
       const lowerCaseGenres = formatGenres(podcast.genres).toLowerCase();
 
-      // Implement your fuzzy matching logic here
       return (
         lowerCaseTitle.includes(lowerCaseQuery) ||
         lowerCaseGenres.includes(lowerCaseQuery)

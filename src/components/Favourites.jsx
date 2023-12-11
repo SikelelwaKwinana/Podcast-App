@@ -21,3 +21,36 @@
 // };
 
 // export default Favorites;
+
+
+
+
+
+
+// const fuzzySearch = (query, podcasts) => {
+//     const lowerCaseQuery = query.toLowerCase();
+//     return podcasts.filter((podcast) => {
+//       const lowerCaseTitle = podcast.title.toLowerCase();
+//       const lowerCaseGenres = formatGenres(podcast.genres).toLowerCase();
+
+//       return (
+//         lowerCaseTitle.includes(lowerCaseQuery) ||
+//         lowerCaseGenres.includes(lowerCaseQuery)
+//       );
+//     });
+//   };
+// <form
+//             className="nav--search"
+//             onSubmit={(e) => {
+//               e.preventDefault();
+//               handleSearch();
+//             }}
+//           >
+//             <input
+//               type="text"
+//               placeholder="Search"
+//               className="search--input"
+//               value={searchQuery}
+//               onChange={(e) => setSearchQuery(e.target.value)}
+//             />
+//           </form>

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import GenreFilter from "./GenreFilter";
-import PodcastList from "./PodcastList";
 import SortButton from "./SortButton";
 import "../styles/navbar.css";
 
-const Navbar = ({ onFilterChange, onSortChange, onSearch }) => {
+const Navbar = ({ onFilterChange, onSortChange, onSearch, onHomeClick }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = () => {
     onSearch(searchQuery);
+    setSearchQuery("")
   };
 
   return (
@@ -17,10 +17,11 @@ const Navbar = ({ onFilterChange, onSortChange, onSearch }) => {
       <nav className="navBar">
         <div className="nav--container">
           <div className="nav--brand">
-            <img src="/src/images/microphone.png" className="nav--image" />
-            <h1 className="nav--title"> Pod</h1>
+          <Link to="/" onClick={onHomeClick} className="home-button">
+              <img src="/src/images/microphone.png" className="nav--image" alt="Podcast Logo" />
+              <h1 className="nav--title"> Pod</h1>
+            </Link>
           </div>
-          <div className="nav--options"></div>
           <form
             className="nav--search"
             onSubmit={(e) => {
@@ -37,9 +38,13 @@ const Navbar = ({ onFilterChange, onSortChange, onSearch }) => {
             />
           </form>
         </div>
+        <div className="nav--options">
+            <button className="nav--option">Recently Viewed</button>
+          </div>
         <div className="nav--actions">
           <SortButton onSortChange={onSortChange} />
-          <GenreFilter onFilterChange={onFilterChange} />
+            <GenreFilter onFilterChange={onFilterChange} />
+            
         </div>
       </nav>
     </div>

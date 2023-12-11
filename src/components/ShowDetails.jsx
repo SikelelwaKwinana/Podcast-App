@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import LoadingPage from "./LoadingPage";
+import AudioPlayer from "./AudioPlayer"; // Import the AudioPlayer component
 
 const ShowDetails = () => {
   const { id } = useParams();
   const [showDetail, setShowDetail] = useState(null);
   const [selectedSeason, setSelectedSeason] = useState(null);
   const [selectedEpisode, setSelectedEpisode] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
   useEffect(() => {
     const fetchShowDetails = async () => {
       try {
-        const response = await fetch(
-          `https://podcast-api.netlify.app/id/${id}`
-        );
+        const response = await fetch(`https://podcast-api.netlify.app/id/${id}`);
         if (!response.ok) {
-          throw new Error(
-            `Failed to fetch show details. Status: ${response.status}`
-          );
+          throw new Error(`Failed to fetch show details. Status: ${response.status}`);
         }
 
         const data = await response.json();
@@ -39,26 +39,30 @@ const ShowDetails = () => {
         );
 
         setShowDetail({ ...data, seasons: episodesWithAudio });
+        setLoading(false);
       } catch (error) {
-        console.error("Error fetching show details:", error.message);
+        console.error('Error fetching show details:', error.message);
+        setError(error.message);
+        setLoading(false);
       }
     };
+
     fetchShowDetails();
   }, [id]);
 
   const handleSeasonSelect = (seasonNumber) => {
     console.log("Clicked Season:", seasonNumber);
     setSelectedSeason(seasonNumber);
+    setSelectedEpisode(null); // Reset selected episode when changing seasons
   };
 
   const handlePlay = (episode) => {
-    const audioFile = episode.file;
-    console.log("Play:", audioFile);
-
-    const audio = new Audio(audioFile);
-    audio.play();
-
+    setIsAudioPlaying(true);
     setSelectedEpisode(episode);
+  };
+
+  const handleAddToFavourites = (episode) => {
+    console.log('Added to Favourites:', episode.title);
   };
 
   return (
@@ -66,7 +70,9 @@ const ShowDetails = () => {
       <Link to="/">
         <button className="back-button">Back</button>
       </Link>
-      {showDetail ? (
+      {loading && <LoadingPage />}
+      {error && <p>Error: {error}</p>}
+      {showDetail && (
         <div>
           <div className="show-details-header">
             <img
@@ -137,9 +143,12 @@ const ShowDetails = () => {
             </div>
           )}
         </div>
-      ) : (
-        <LoadingPage />
       )}
+      <AudioPlayer
+        isPlaying={isAudioPlaying}
+        setIsPlaying={setIsAudioPlaying}
+        currentEpisode={selectedEpisode}
+      />
     </div>
   );
 };
