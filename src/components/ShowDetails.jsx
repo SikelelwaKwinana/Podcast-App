@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import LoadingPage from "./LoadingPage";
-import AudioPlayer from "./AudioPlayer"; // Import the AudioPlayer component
+import AudioPlayer from "./AudioPlayer"; 
 
 const ShowDetails = () => {
   const { id } = useParams();
@@ -53,7 +53,7 @@ const ShowDetails = () => {
   const handleSeasonSelect = (seasonNumber) => {
     console.log("Clicked Season:", seasonNumber);
     setSelectedSeason(seasonNumber);
-    setSelectedEpisode(null); // Reset selected episode when changing seasons
+    setSelectedEpisode(null); 
   };
 
   const handlePlay = (episode) => {

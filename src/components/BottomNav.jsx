@@ -1,4 +1,4 @@
-// BottomNavbar.js
+
 import React from "react";
 import AudioPlayer from "./AudioPlayer";
 import "../styles/navbar.css";
